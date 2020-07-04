@@ -272,7 +272,7 @@ acorn@^5.0.0:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.4.tgz#3e8d8a9947d0599a1796d10225d7432f4a4acf5e"
   integrity sha512-1D++VG7BhrtvQpNbBzovKNc1FLGGEE/oGe7b9xJm/RFHMBeUaUGpluV9RLjZa47YFdPcDAenEYuq9pQPcMdLJg==
 
-airbnb-prop-types@^2.5.4:
+airbnb-prop-types@^2.8.1:
   version "2.16.0"
   resolved "https://registry.yarnpkg.com/airbnb-prop-types/-/airbnb-prop-types-2.16.0.tgz#b96274cefa1abb14f623f804173ee97c13971dc2"
   integrity sha512-7WHOFolP/6cS96PhKNrslCLMYAI8yB1Pp6u6XmxozQOiZbsI5ycglZr5cHhBFfuRcQQjzCMith5ZPZdYiJCxUg==
@@ -2441,7 +2441,7 @@ console-control-strings@^1.0.0, console-control-strings@~1.1.0:
   resolved "https://registry.yarnpkg.com/console-control-strings/-/console-control-strings-1.1.0.tgz#3d7cf4464db6446ea644bf4b39507f9851008e8e"
   integrity sha1-PXz0Rk22RG6mRL9LOVB/mFEAjo4=
 
-consolidated-events@^1.0.1:
+consolidated-events@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/consolidated-events/-/consolidated-events-1.1.1.tgz#25395465b35e531395418b7bbecb5ecaf198d179"
   integrity sha1-JTlUZbNeUxOVQYt7vsteyvGY0Xk=
@@ -8105,20 +8105,20 @@ react-addons-shallow-compare@15.6.0:
     fbjs "^0.8.4"
     object-assign "^4.1.0"
 
-react-dates@12.3.0:
-  version "12.3.0"
-  resolved "https://registry.yarnpkg.com/react-dates/-/react-dates-12.3.0.tgz#430e5736bc655a21d9e40ab24b07b0d17d0df80a"
-  integrity sha1-Qw5XNrxlWiHZ5AqySwew0X0N+Ao=
+react-dates@12.5.1:
+  version "12.5.1"
+  resolved "https://registry.yarnpkg.com/react-dates/-/react-dates-12.5.1.tgz#8902776d70c1b9591a32322b5ad02b1445580adc"
+  integrity sha1-iQJ3bXDBuVkaMjIrWtArFEVYCtw=
   dependencies:
-    airbnb-prop-types "^2.5.4"
+    airbnb-prop-types "^2.8.1"
     classnames "^2.2.5"
-    consolidated-events "^1.0.1"
+    consolidated-events "^1.1.0"
     is-touch-device "^1.0.1"
     lodash "^4.1.1"
     object.assign "^4.0.4"
     object.values "^1.0.4"
     prop-types "^15.5.10"
-    react-moment-proptypes "^1.4.0"
+    react-moment-proptypes "^1.5.0"
     react-portal "^3.1.0"
 
 react-dom-factories@^1.0.0:
@@ -8150,7 +8150,7 @@ react-modal@2.2.2:
     prop-types "^15.5.10"
     react-dom-factories "^1.0.0"
 
-react-moment-proptypes@^1.4.0:
+react-moment-proptypes@^1.5.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/react-moment-proptypes/-/react-moment-proptypes-1.7.0.tgz#89881479840a76c13574a86e3bb214c4ba564e7a"
   integrity sha512-ZbOn/P4u469WEGAw5hgkS/E+g1YZqdves2BjYsLluJobzUZCtManhjHiZKjniBVT7MSHM6D/iKtRVzlXVv3ikA==

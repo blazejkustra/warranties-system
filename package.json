@@ -32,7 +32,7 @@
     "numeral": "2.0.6",
     "react": "15.6.1",
     "react-addons-shallow-compare": "15.6.0",
-    "react-dates": "12.3.0",
+    "react-dates": "12.5.1",
     "react-dom": "15.6.1",
     "react-modal": "2.2.2",
     "react-redux": "5.0.5",

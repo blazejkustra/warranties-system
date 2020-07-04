@@ -12,6 +12,7 @@ import warranties from "../fixtures/warranties";
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import database from '../../firebase/firebase';
+import moment from "moment";
 
 const createMockStore = configureMockStore([thunk]);
 const uid = 'test-uid';
@@ -34,7 +35,6 @@ beforeEach((done) => {
         warrantiesData[id] = { category, number, item, model, serialNumber,
                               startDate, duration, invoice, other }
     })
-    console.log(warrantiesData)
     database.ref(`users/${uid}/warranties`).set(warrantiesData).then(() => done());
 })
 
@@ -46,8 +46,37 @@ test('should setup addWarranty action object', () => {
     });
 });
 
-test('should add warranty to store and database', () => {
+test('should add warranty to store and database', (done) => {
+    const store = createMockStore(defaultAuthState);
 
+    const warranty = {
+        category: 'buy',
+        number: 1,
+        item: 'New',
+        model: 'macbook pro',
+        serialNumber: '',
+        startDate: moment(0).add(1, 'days').valueOf(),
+        duration: 24,
+        invoice: '',
+        other: ''
+    }
+
+    store.dispatch(startAddWarranty(warranty)).then(() => {
+        const actions = store.getActions();
+        expect(actions[0]).toEqual({
+            type: 'ADD_WARRANTY',
+            warranty: {
+                id: expect.any(String),
+                ...warranty
+            }
+        });
+
+        return database.ref(`users/${uid}/warranties/${actions[0].warranty.id}`)
+            .once('value');
+    }).then((snapshot) => {
+        expect(snapshot.val()).toEqual(warranty);
+        done();
+    });
 });
 
 test('should setup editWarranty action object', () => {
@@ -60,6 +89,27 @@ test('should setup editWarranty action object', () => {
     });
 });
 
+test('should edit a warranty in store and in database', (done) => {
+   const store = createMockStore(defaultAuthState);
+
+   const id = 0;
+   const updates = { category: 'sell', duration: 100 };
+
+   store.dispatch(startEditWarranty(id, updates)).then(() => {
+      const actions = store.getActions();
+      expect(actions[0]).toEqual({
+         type: 'EDIT_WARRANTY',
+         id,
+         updates
+      });
+
+      return database.ref(`users/${uid}/warranties/${id}`).once('value');
+   }).then((snapshot) => {
+        expect(snapshot.val().duration).toBe(updates.duration);
+        done();
+   });
+});
+
 test('should setup removeWarranty action object', () => {
     const action = removeWarranty(warranties[0].id);
     expect(action).toEqual({
@@ -68,10 +118,28 @@ test('should setup removeWarranty action object', () => {
     });
 });
 
-test('should setup setWarranties action object', () => {
-    const action = setWarranties(warranties);
-    expect(action).toEqual({
-        type: 'SET_WARRANTIES',
-        warranties
+test('should remove warranty from store and database', (done) => {
+    const store = createMockStore(defaultAuthState);
+    const id = 0;
+
+    store.dispatch(startRemoveWarranty(id)).then(() => {
+        const actions = store.getActions();
+        expect(actions[0]).toEqual({
+            type: 'REMOVE_WARRANTY',
+            id
+        });
+
+        return database.ref(`users/${uid}/warranties/${id}`).once('value');
+    }).then((snapshot) => {
+        expect(snapshot.val()).toBeFalsy();
+        done();
     });
 });
+
+// test('should setup setWarranties action object', () => {
+//     const action = setWarranties(warranties);
+//     expect(action).toEqual({
+//         type: 'SET_WARRANTIES',
+//         warranties
+//     });
+// });

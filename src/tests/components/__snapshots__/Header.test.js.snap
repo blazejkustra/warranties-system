@@ -12,11 +12,10 @@ exports[`should render Header correctly 1`] = `
     >
       <Link
         className="header__title"
-        replace={false}
         to="/dashboard"
       >
         <h1>
-          Boilerplate
+          Dekanex gwarancje
         </h1>
       </Link>
       <button

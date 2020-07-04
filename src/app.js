@@ -42,22 +42,3 @@ firebase.auth().onAuthStateChanged((user) => {
     history.push('/');
   }
 });
-
-import {addWarranty, removeWarranty} from './actions/warranty';
-import { setTextFilter, setCategorySell, setCategoryBuy, setCategoryAll} from './actions/filters';
-import warranties from "./tests/fixtures/warranties";
-
-store.subscribe(() => {
-  console.log(store.getState());
-})
-
-store.dispatch(addWarranty(warranties[0]));
-store.dispatch(addWarranty(warranties[1]));
-
-store.dispatch(removeWarranty(warranties[1]));
-
-store.dispatch(setTextFilter('xd'));
-store.dispatch(setCategoryBuy());
-store.dispatch(setCategoryAll);
-store.dispatch(setCategorySell);
-

@@ -17,6 +17,3 @@ const database = firebase.database();
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
 export { firebase, googleAuthProvider, database as default };
-
-database.ref().set({lol:'test1'})
-console.log('test')
