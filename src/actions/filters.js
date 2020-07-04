@@ -13,3 +13,8 @@ export const setCategoryBuy = () => ({
 export const setCategorySell = () => ({
     type: 'SET_CATEGORY_SELL',
 });
+
+// SET_CATEGORY_ALL
+export const setCategoryAll = () => ({
+    type: 'SET_CATEGORY_ALL',
+});

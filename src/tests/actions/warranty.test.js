@@ -1,5 +1,42 @@
-import { addWarranty, editWarranty, setWarranties, removeWarranty } from "../../actions/warranty";
+import {
+    addWarranty,
+    editWarranty,
+    setWarranties,
+    removeWarranty,
+    startAddWarranty,
+    startEditWarranty,
+    startRemoveWarranty,
+    startSetWarranties
+} from "../../actions/warranty";
 import warranties from "../fixtures/warranties";
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+import database from '../../firebase/firebase';
+
+const createMockStore = configureMockStore([thunk]);
+const uid = 'test-uid';
+const defaultAuthState = { auth: { uid }};
+
+beforeEach((done) => {
+    const warrantiesData = {};
+    warranties.forEach(({
+         id,
+         category,
+         number,
+         item,
+         model,
+         serialNumber,
+         startDate,
+         duration,
+         invoice,
+         other
+    }) => {
+        warrantiesData[id] = { category, number, item, model, serialNumber,
+                              startDate, duration, invoice, other }
+    })
+    console.log(warrantiesData)
+    database.ref(`users/${uid}/warranties`).set(warrantiesData).then(() => done());
+})
 
 test('should setup addWarranty action object', () => {
     const action = addWarranty(warranties[0]);
@@ -7,6 +44,10 @@ test('should setup addWarranty action object', () => {
         type: 'ADD_WARRANTY',
         warranty: warranties[0]
     });
+});
+
+test('should add warranty to store and database', () => {
+
 });
 
 test('should setup editWarranty action object', () => {

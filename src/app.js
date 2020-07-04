@@ -11,20 +11,23 @@ import { firebase } from './firebase/firebase';
 import LoadingPage from './components/LoadingPage';
 
 const store = configureStore();
+const app = document.getElementById('app');
+
 const jsx = (
   <Provider store={store}>
     <AppRouter />
   </Provider>
 );
+
 let hasRendered = false;
 const renderApp = () => {
   if (!hasRendered) {
-    ReactDOM.render(jsx, document.getElementById('app'));
+    ReactDOM.render(jsx, app);
     hasRendered = true;
   }
 };
 
-ReactDOM.render(<LoadingPage />, document.getElementById('app'));
+ReactDOM.render(<LoadingPage />, app);
 
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
@@ -39,3 +42,22 @@ firebase.auth().onAuthStateChanged((user) => {
     history.push('/');
   }
 });
+
+import {addWarranty, removeWarranty} from './actions/warranty';
+import { setTextFilter, setCategorySell, setCategoryBuy, setCategoryAll} from './actions/filters';
+import warranties from "./tests/fixtures/warranties";
+
+store.subscribe(() => {
+  console.log(store.getState());
+})
+
+store.dispatch(addWarranty(warranties[0]));
+store.dispatch(addWarranty(warranties[1]));
+
+store.dispatch(removeWarranty(warranties[1]));
+
+store.dispatch(setTextFilter('xd'));
+store.dispatch(setCategoryBuy());
+store.dispatch(setCategoryAll);
+store.dispatch(setCategorySell);
+

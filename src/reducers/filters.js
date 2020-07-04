@@ -1,6 +1,6 @@
 const filtersReducerDefaultState = {
     text: '',
-    category: 'buy',
+    category: 'all',
 };
 
 const filtersReducer = (state = filtersReducerDefaultState, action) => {
@@ -11,6 +11,8 @@ const filtersReducer = (state = filtersReducerDefaultState, action) => {
             return { ...state, category: 'buy' }
         case 'SET_CATEGORY_SELL':
             return { ...state, category: 'sell' }
+        case 'SET_CATEGORY_ALL':
+            return { ...state, category: 'all' }
         default:
             return state;
     }
