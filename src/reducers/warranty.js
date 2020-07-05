@@ -16,7 +16,7 @@ export default (state = [], action) => {
         case 'REMOVE_WARRANTY':
             return state.filter((warranty) => warranty.id !== action.id);
         case 'SET_WARRANTIES':
-            return action.expenses;
+            return action.warranties;
         default:
             return state;
     }

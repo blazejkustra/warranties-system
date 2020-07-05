@@ -1,6 +1,6 @@
 const filtersReducerDefaultState = {
     text: '',
-    category: 'all',
+    category: 'all'
 };
 
 const filtersReducer = (state = filtersReducerDefaultState, action) => {

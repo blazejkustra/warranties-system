@@ -6,7 +6,7 @@ export default class ExpenseForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            category: props.warranty ? props.warranty.category : 'buy',
+            category: props.warranty ? props.warranty.category : 'sell',
             number: props.warranty ? props.warranty.number : '',
             item: props.warranty ? props.warranty.item : '',
             model: props.warranty ? props.warranty.model : '',
@@ -55,7 +55,7 @@ export default class ExpenseForm extends React.Component {
 
     onDurationChange = (e) => {
         const duration = e.target.value;
-        if (duration.isInteger()) {
+        if (!duration || duration.match(/^[0-9]*[1-9][0-9]*$/)) {
             this.setState(() => ({ duration }));
         }
     };
@@ -72,7 +72,6 @@ export default class ExpenseForm extends React.Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-
         if (!this.state.number || !this.state.duration) {
             this.setState(() => ({ error: 'Wypełnij wymagane pola.' }));
         } else {
@@ -94,17 +93,18 @@ export default class ExpenseForm extends React.Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.onSubmit}>
-                    {this.state.error &&(<p>{this.state.error}</p>)}
+                <form className="form" onKeyPress={(e) => { e.key === 'Enter' && e.preventDefault(); }} onSubmit={this.onSubmit}>
+                    {this.state.error &&(<p className="form__error">{this.state.error}</p>)}
 
-                    <select value={this.state.category} onChange={this.onCategoryChange}>
-                        <option selected value="buy">Kupno</option>
+                    <select className="select" value={this.state.category} onChange={this.onCategoryChange}>
                         <option value="sell">Sprzedaż</option>
+                        <option value="buy">Kupno</option>
                     </select>
 
                     <input
                         type="text"
-                        placeholder="Numer gwarancji"
+                        className="text-input"
+                        placeholder="Numer Stickera"
                         autoFocus
                         value={this.state.number}
                         onChange={this.onNumberChange}
@@ -112,6 +112,7 @@ export default class ExpenseForm extends React.Component {
 
                     <input
                         type="text"
+                        className="text-input"
                         placeholder="Przedmiot"
                         value={this.state.item}
                         onChange={this.onItemChange}
@@ -119,6 +120,7 @@ export default class ExpenseForm extends React.Component {
 
                     <input
                         type="text"
+                        className="text-input"
                         placeholder="Model"
                         value={this.state.model}
                         onChange={this.onModelChange}
@@ -126,7 +128,8 @@ export default class ExpenseForm extends React.Component {
 
                     <input
                         type="text"
-                        placeholder="Serial Number"
+                        className="text-input"
+                        placeholder="Numer Seryjny"
                         value={this.state.serialNumber}
                         onChange={this.onSerialNumberChange}
                     />
@@ -139,10 +142,12 @@ export default class ExpenseForm extends React.Component {
                         isOutsideRange={() => false}
                         showClearDates={true}
                         numberOfMonths={1}
+                        displayFormat={() => "DD/MM/YYYY"}
                     />
 
                     <input
                         type="number"
+                        className="text-input"
                         placeholder="Okres gwarancji"
                         value={this.state.duration}
                         onChange={this.onDurationChange}
@@ -150,6 +155,7 @@ export default class ExpenseForm extends React.Component {
 
                     <input
                         type="text"
+                        className="text-input"
                         placeholder="Numer faktury"
                         value={this.state.invoice}
                         onChange={this.onInvoiceChange}
@@ -157,13 +163,14 @@ export default class ExpenseForm extends React.Component {
 
                     <input
                         type="text"
+                        className="text-input"
                         placeholder="Inne"
                         value={this.state.other}
                         onChange={this.onOtherChange}
                     />
 
                     <div>
-                        <button>Zapisz</button>
+                        <button className="button" >Zapisz</button>
                     </div>
                 </form>
             </div>

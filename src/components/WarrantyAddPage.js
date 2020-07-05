@@ -9,10 +9,25 @@ export class WarrantyAddPage extends React.Component {
         this.props.history.push('/');
     };
 
+    onReturn = () => {
+        this.props.history.push('/');
+    };
+
     render() {
         return (
             <div>
-                <WarrantyForm onSubmit={this.onSubmit} />
+                <div className="page-header">
+                    <div className="content-container">
+                        <h1 className="page-header__title">Nowa Gwarancja</h1>
+                    </div>
+                </div>
+                <div className="content-container">
+                    <WarrantyForm onSubmit={this.onSubmit} />
+                    <div>
+                        <button className="button button--tertiary" onClick={this.onReturn}>Wróć</button>
+                    </div>
+                </div>
+
             </div>
         );
     };

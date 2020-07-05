@@ -1,8 +1,11 @@
 import React from 'react';
+import WarrantyList from "./WarrantyList";
+import WarrantyOptions from "./WarrantyOptions";
 
 const DashboardPage = () => (
   <div>
-    Dashboard page content
+      <WarrantyOptions />
+      <WarrantyList />
   </div>
 );
 

@@ -9,6 +9,7 @@ import './styles/styles.scss';
 import 'react-dates/lib/css/_datepicker.css';
 import { firebase } from './firebase/firebase';
 import LoadingPage from './components/LoadingPage';
+import { startSetWarranties } from "./actions/warranty";
 
 const store = configureStore();
 const app = document.getElementById('app');
@@ -32,7 +33,9 @@ ReactDOM.render(<LoadingPage />, app);
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     store.dispatch(login(user.uid));
-    renderApp();
+    store.dispatch(startSetWarranties()).then(() => {
+      renderApp();
+    });
     if (history.location.pathname === '/') {
       history.push('/dashboard');
     }
