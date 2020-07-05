@@ -13,8 +13,14 @@ th, td {
 tr:nth-child(even) {background-color: #f2f2f2;}
 
 .list-body {
+  font-size: $font-size-small;
+  word-break: break-all;
   margin-bottom: $m-size;
   @media (min-width: $desktop-breakpoint) {
     margin-bottom: $l-size;
   }
+}
+
+.list__unbreakable {
+  word-break: keep-all;
 }
