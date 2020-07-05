@@ -56,7 +56,7 @@ export default class ExpenseForm extends React.Component {
     onDurationChange = (e) => {
         const duration = e.target.value;
         if (!duration || duration.match(/^[0-9]*[1-9][0-9]*$/)) {
-            this.setState(() => ({ duration }));
+            this.setState(() => ({ duration: parseInt(duration) }));
         }
     };
 
