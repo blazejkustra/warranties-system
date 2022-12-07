@@ -2,7 +2,7 @@
   "name": "boilerplate-react-app",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "Andrew Mead",
+  "author": "Blazej Kustra",
   "license": "MIT",
   "scripts": {
     "build:dev": "NODE_OPTIONS=--openssl-legacy-provider webpack",
